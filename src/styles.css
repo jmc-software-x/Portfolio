@@ -1089,6 +1089,202 @@ a.contact__card:hover {
   }
 }
 
+
+/* trajectory + health focus */
+.path {
+  list-style: none;
+  margin: 0 0 48px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  position: relative;
+}
+.path::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 38px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(45, 212, 191, 0.25), var(--teal), var(--cyan), var(--amber));
+}
+.path__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 8px;
+  position: relative;
+}
+.path__years {
+  font-size: 12px;
+  color: var(--faint);
+  height: 22px;
+}
+.path__dot {
+  width: 16px;
+  height: 16px;
+  margin: 8px 0 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--teal);
+  box-shadow: 0 0 14px rgba(45, 212, 191, 0.6);
+  position: relative;
+  z-index: 1;
+}
+.path__stage {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+}
+.path__title {
+  font-family: var(--display);
+  font-size: 16px;
+  margin: 4px 0 2px;
+}
+.path__note {
+  font-size: 13px;
+  color: var(--muted);
+}
+.path__step--target .path__dot {
+  width: 22px;
+  height: 22px;
+  margin: 5px 0 11px;
+  background: var(--amber);
+  border-color: var(--amber);
+  box-shadow: 0 0 0 6px rgba(251, 191, 36, 0.15), 0 0 24px rgba(251, 191, 36, 0.7);
+  animation: beat 2.4s ease-in-out infinite;
+}
+.path__step--target .path__stage,
+.path__step--target .path__years {
+  color: var(--amber);
+}
+.focus__lead {
+  font-size: 18px;
+  margin: 0 0 20px;
+  max-width: 760px;
+}
+.focus {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.focus__card {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.focus__card:hover {
+  border-color: rgba(45, 212, 191, 0.45);
+}
+.focus__num {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 700;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.focus__card h3 {
+  font-family: var(--display);
+  font-size: 17px;
+  margin: 6px 0 8px;
+}
+.focus__card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+.plan {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: var(--radius);
+  background: linear-gradient(100deg, rgba(251, 191, 36, 0.08), rgba(14, 24, 46, 0.6));
+  overflow: hidden;
+}
+.plan__item {
+  padding: 22px 24px;
+}
+.plan__item + .plan__item {
+  border-left: 1px solid rgba(251, 191, 36, 0.2);
+}
+.plan__range {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--amber);
+  font-weight: 600;
+}
+.plan__item h3 {
+  font-family: var(--display);
+  margin: 4px 0 6px;
+  font-size: 17px;
+}
+.plan__item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+@media (max-width: 1000px) {
+  .focus {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .path {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-left: 30px;
+  }
+  .path::before {
+    left: 9px;
+    right: auto;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(180deg, rgba(45, 212, 191, 0.25), var(--teal), var(--amber));
+  }
+  .path__step {
+    align-items: flex-start;
+    text-align: left;
+    padding: 0;
+  }
+  .path__dot {
+    position: absolute;
+    left: -29px;
+    top: 2px;
+    margin: 0;
+  }
+  .path__step--target .path__dot {
+    left: -32px;
+    margin: 0;
+  }
+  .path__years {
+    height: auto;
+  }
+  .focus,
+  .plan {
+    grid-template-columns: 1fr;
+  }
+  .plan__item + .plan__item {
+    border-left: 0;
+    border-top: 1px solid rgba(251, 191, 36, 0.2);
+  }
+}
+@media print {
+  #salud {
+    display: none !important;
+  }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 1000px) {
   .skills {

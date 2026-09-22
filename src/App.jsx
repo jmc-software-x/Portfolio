@@ -10,11 +10,15 @@ import {
   continuous,
   languages,
   leadership,
+  path,
+  healthFocus,
+  plan90,
 } from "./data/cv";
 
 const NAV = [
   ["perfil", "Perfil"],
   ["desempeno", "Desempeño"],
+  ["salud", "Enfoque salud"],
   ["competencias", "Competencias"],
   ["experiencia", "Experiencia"],
   ["educacion", "Educación"],
@@ -392,9 +396,45 @@ export default function App() {
           </div>
         </Section>
 
+        <Section id="salud" kicker="03" title="Trayectoria y enfoque para la Dirección de TI en salud">
+          <ol className="path" data-reveal>
+            {path.map((p, i) => (
+              <li key={p.title} className={`path__step${p.target ? " path__step--target" : ""}`} style={{ "--i": i }}>
+                <span className="path__years">{p.years}</span>
+                <span className="path__dot" aria-hidden="true" />
+                <span className="path__stage">{p.stage}</span>
+                <strong className="path__title">{p.title}</strong>
+                <span className="path__note">{p.note}</span>
+              </li>
+            ))}
+          </ol>
+
+          <p className="focus__lead" data-reveal>
+            Cómo aportaría como Director de TI de una clínica: seis frentes de trabajo y un plan para los primeros 90 días.
+          </p>
+          <div className="focus">
+            {healthFocus.map((f, i) => (
+              <div className="focus__card spot tilt" key={f.title} data-reveal style={{ "--i": i % 3 }}>
+                <span className="focus__num">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{f.title}</h3>
+                <p>{f.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="plan" data-reveal>
+            {plan90.map((p) => (
+              <div className="plan__item" key={p.range}>
+                <span className="plan__range">{p.range}</span>
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
         <Marquee items={competencies.flatMap((c) => c.items).slice(0, 40)} />
 
-        <Section id="competencias" kicker="03" title="Competencias directivas & tecnológicas">
+        <Section id="competencias" kicker="04" title="Competencias directivas & tecnológicas">
           <div className="skills">
             {competencies.map((c, i) => (
               <div className="skill spot tilt" key={c.area} data-reveal style={{ "--i": i % 4 }}>
@@ -411,7 +451,7 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="experiencia" kicker="04" title="Experiencia profesional">
+        <Section id="experiencia" kicker="05" title="Experiencia profesional">
           <div className="timeline">
             {experience.map((job, i) => (
               <Job key={job.company} job={job} index={i} />
@@ -419,7 +459,7 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="educacion" kicker="05" title="Educación & idiomas">
+        <Section id="educacion" kicker="06" title="Educación & idiomas">
           <div className="edu">
             <div className="edu__list">
               {education.map((e, i) => (
@@ -450,7 +490,7 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="contacto" kicker="06" title="Conversemos">
+        <Section id="contacto" kicker="07" title="Conversemos">
           <div className="contact" data-reveal>
             <p className="contact__lead">
               Estrategia de negocio, datos y ejecución tecnológica en un mismo lenguaje. Si buscas liderazgo de TI para

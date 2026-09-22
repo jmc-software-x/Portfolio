@@ -76,7 +76,7 @@ export const experience = [
   {
     company: "Tata Consultancy Services (TCS)",
     sector: "Cliente: BCP (Credicorp)",
-    role: "TI Analyst",
+    role: "IT Analyst",
     period: "Mar 2026 – Actualidad",
     place: "Perú",
     bullets: [
@@ -129,7 +129,7 @@ export const experience = [
   {
     company: "Apprecio (DCanje Perú S.A.C.)",
     sector: "Fintech & criptomonedas",
-    role: "Chief Software Architect",
+    role: "Tech Lead & Software Architect",
     period: "Ago 2022 – Jul 2024",
     place: "Perú · Chile",
     bullets: [
@@ -215,3 +215,44 @@ export const leadership = {
   ],
   tags: ["IT Strategy", "Governance", "PMO", "Architecture", "Development", "QA", "Data", "Cloud", "DevOps", "Cybersecurity"],
 };
+
+export const path = [
+  { years: "2021 – 2022", stage: "Desarrollo", title: "Frontend / Full Stack", note: "Falabella · Henry" },
+  { years: "2022 – 2024", stage: "Liderazgo técnico", title: "Tech Lead & Software Architect", note: "Apprecio · Fintech" },
+  { years: "2024 – 2025", stage: "Gestión en salud", title: "IT Project Manager", note: "Clínica · Transformación digital" },
+  { years: "2026", stage: "Gobierno TI corporativo", title: "IT Analyst", note: "TCS · BCP" },
+  { years: "Siguiente paso", stage: "Dirección", title: "Director de TI", note: "Sector salud", target: true },
+];
+
+export const healthFocus = [
+  {
+    title: "Continuidad operativa clínica",
+    text: "Disponibilidad de sistemas críticos (admisión, agenda, historia clínica, farmacia, caja) con monitoreo, respaldos y planes de contingencia.",
+  },
+  {
+    title: "Seguridad y protección de datos",
+    text: "Gobierno de accesos, trazabilidad y resguardo de la información de pacientes conforme a la Ley N.º 29733 de Protección de Datos Personales.",
+  },
+  {
+    title: "Integración e interoperabilidad",
+    text: "Conectar ERP, CRM, agenda, laboratorio e imágenes para eliminar doble digitación y dar una sola vista del paciente y la operación.",
+  },
+  {
+    title: "Experiencia del paciente",
+    text: "Citas, recordatorios y atención por WhatsApp y canales digitales, con seguimiento comercial de leads y fidelización.",
+  },
+  {
+    title: "Datos para la Gerencia",
+    text: "Tableros de ingresos, costos, productividad y ocupación para decidir con información oportuna y confiable.",
+  },
+  {
+    title: "Gobierno y gestión de proveedores",
+    text: "Portafolio de proyectos priorizado por valor, presupuesto TI, SLAs y evaluación técnica de proveedores y plataformas.",
+  },
+];
+
+export const plan90 = [
+  { range: "Días 1–30", title: "Diagnóstico", text: "Inventario de sistemas, riesgos, contratos y necesidades de cada área; quick wins identificados." },
+  { range: "Días 31–60", title: "Priorización", text: "Roadmap TI alineado a Gerencia, presupuesto, gobierno de proyectos y plan de seguridad." },
+  { range: "Días 61–90", title: "Ejecución", text: "Primeras mejoras en marcha, indicadores de servicio TI y reporte de avance a la Dirección." },
+];
