@@ -233,7 +233,7 @@ export const plan90 = [
 ];
 
 export const earlyCareer = {
-  title: "Inicios en desarrollo de software",
+  title: "Base técnica en ingeniería de software",
   period: "2021 – 2022",
   items: [
     {
