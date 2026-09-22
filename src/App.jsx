@@ -482,6 +482,14 @@ export default function App() {
                     </div>
                   ))}
                 </div>
+                <div className="job__tags">
+                  <span className="job__taglabel">Stack:</span>
+                  {earlyCareer.stack.map((t) => (
+                    <span key={t} className="chip chip--sm">
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
             </article>
           </div>

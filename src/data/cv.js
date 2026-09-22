@@ -240,13 +240,14 @@ export const earlyCareer = {
       role: "Teaching Assistant – Full Stack",
       org: "Henry (SoyHenry)",
       period: "Feb – Abr 2022",
-      text: "Mentoría técnica de equipos de desarrollo en proyectos Full Stack: seguimiento de entregables, code review, buenas prácticas y trabajo ágil.",
+      text: "Mentoría técnica de equipos en proyectos Full Stack de extremo a extremo: front-end, back-end con Node.js, bases de datos SQL/NoSQL, microservicios con Docker y fundamentos de Data Science; code review, buenas prácticas y trabajo ágil.",
     },
     {
       role: "Frontend Web Developer",
       org: "Falabella Perú (programa de prácticas)",
       period: "Feb – Oct 2021",
-      text: "Desarrollo de interfaces web en React JS para un entorno retail de gran escala.",
+      text: "Desarrollo de interfaces web en React JS integradas con servicios back-end, en un entorno retail de gran escala.",
     },
   ],
+  stack: ["React", "Node.js", "REST APIs", "Microservicios", "Docker", "SQL Server", "PostgreSQL", "MongoDB", "Python", "Data Science"],
 };
