@@ -1,30 +1,332 @@
-import React, { Fragment} from "react";
-import About from "./components/Home/About";
-import Nav from "./components/Home/Nav";
-import Experience from "./components/Home/Experience";
-import Portfolio from "./components/Home/Portfolio";
-import Contact from "./components/Home/Contact";
-import Footer from "./components/Home/Footer";
-import HeaderTwo from "./components/Home/header/HeaderTwo";
-import { FloatingIcon } from "./components/Home/FloatingIcon.jsx";
-import ParticlesBckg from "./components/ParticlesBckg";
+import { useEffect, useState } from "react";
+import NetworkScene from "./components/NetworkScene";
+import {
+  profile,
+  summary,
+  highlights,
+  competencies,
+  experience,
+  education,
+  continuous,
+  languages,
+} from "./data/cv";
 
-const App = () => {
-  
-  
-  return (
-    <Fragment>
-      <ParticlesBckg/>
-      <HeaderTwo />
-      <Nav />
-      <About />
-      <Experience />
-      <Portfolio />
-      <Contact />
-      <Footer />
-      <FloatingIcon />
-    </Fragment>
-  );
+const NAV = [
+  ["perfil", "Perfil"],
+  ["competencias", "Competencias"],
+  ["experiencia", "Experiencia"],
+  ["educacion", "Educación"],
+  ["contacto", "Contacto"],
+];
+
+const Icon = ({ d, label }) => (
+  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden={!label} role={label ? "img" : undefined} aria-label={label}>
+    <path d={d} fill="currentColor" />
+  </svg>
+);
+const ICONS = {
+  pin: "M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z",
+  phone: "M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1Z",
+  mail: "M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5Z",
+  linkedin: "M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.3V10H5.7v8.3h2.6ZM7 8.9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.3 9.4v-4.6c0-2.4-1.3-3.6-3-3.6a2.6 2.6 0 0 0-2.4 1.3V10h-2.5v8.3h2.6v-4.4c0-1.1.2-2.2 1.6-2.2s1.4 1.3 1.4 2.3v4.3h2.3Z",
+  github: "M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z",
+  award: "M12 2a7 7 0 0 0-4 12.7V22l4-2 4 2v-7.3A7 7 0 0 0 12 2Zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z",
+  download: "M5 20h14v-2H5v2Zm7-3 5-5-1.4-1.4-2.6 2.6V4h-2v9.2l-2.6-2.6L7 12l5 5Z",
 };
 
-export default App;
+function useReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll("[data-reveal]");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("is-in"));
+      return undefined;
+    }
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-in");
+            io.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.12 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
+function useActiveSection() {
+  const [active, setActive] = useState("");
+  useEffect(() => {
+    const onScroll = () => {
+      let current = "";
+      NAV.forEach(([id]) => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.4) current = id;
+      });
+      setActive(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return active;
+}
+
+const Section = ({ id, kicker, title, children }) => (
+  <section id={id} className="section">
+    <header className="section__head" data-reveal>
+      <span className="kicker">{kicker}</span>
+      <h2>{title}</h2>
+    </header>
+    {children}
+  </section>
+);
+
+function Job({ job, index }) {
+  const [open, setOpen] = useState(false);
+  const PREVIEW = 5;
+  const hidden = job.bullets.length - PREVIEW;
+  return (
+    <article className={`job ${open ? "job--open" : ""}`} data-reveal style={{ "--i": index }}>
+      <div className="job__dot" aria-hidden="true" />
+      <div className="job__card">
+        <div className="job__top">
+          <div>
+            <h3 className="job__company">{job.company}</h3>
+            {job.sector && <span className="job__sector">{job.sector}</span>}
+          </div>
+          <div className="job__meta">
+            <span>{job.period}</span>
+            <span>{job.place}</span>
+          </div>
+        </div>
+        <p className="job__role">
+          {job.role}
+          {job.subrole && <span> | {job.subrole}</span>}
+        </p>
+        {job.intro && <p className="job__intro">{job.intro}</p>}
+        <ul className="job__bullets">
+          {job.bullets.map((b, i) => (
+            <li key={i} className={i >= PREVIEW ? "job__extra" : undefined}>
+              {b}
+            </li>
+          ))}
+        </ul>
+        {hidden > 0 && (
+          <button className="job__toggle" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+            {open ? "Ver menos" : `Ver ${hidden} más`}
+          </button>
+        )}
+        {job.result && (
+          <div className="job__result">
+            <strong>Resultado destacado</strong>
+            <p>{job.result}</p>
+          </div>
+        )}
+        <div className="job__tags">
+          <span className="job__taglabel">{job.tagLabel}:</span>
+          {job.tags.map((t) => (
+            <span key={t} className="chip chip--sm">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export default function App() {
+  useReveal();
+  const active = useActiveSection();
+  const [menu, setMenu] = useState(false);
+
+  return (
+    <>
+      <NetworkScene />
+      <div className="vignette" aria-hidden="true" />
+
+      <nav className={`nav ${menu ? "nav--open" : ""}`}>
+        <a href="#top" className="nav__brand" onClick={() => setMenu(false)}>
+          <span className="monogram">JD</span>
+          <span className="nav__name">James Diaz Lopez</span>
+        </a>
+        <button className="nav__burger" aria-label="Menú" aria-expanded={menu} onClick={() => setMenu((m) => !m)}>
+          <span />
+          <span />
+        </button>
+        <div className="nav__links">
+          {NAV.map(([id, label]) => (
+            <a key={id} href={`#${id}`} className={active === id ? "is-active" : ""} onClick={() => setMenu(false)}>
+              {label}
+            </a>
+          ))}
+          <button className="btn btn--ghost btn--sm" onClick={() => window.print()}>
+            <Icon d={ICONS.download} /> PDF
+          </button>
+        </div>
+      </nav>
+
+      <main id="top">
+        <header className="hero">
+          <div className="hero__inner">
+            <p className="hero__eyebrow" data-reveal>
+              <span className="pulse-dot" /> {profile.location} · Salud · Banca · Fintech
+            </p>
+            <h1 className="hero__name" data-reveal>
+              James <span>Diaz Lopez</span>
+            </h1>
+            <p className="hero__title" data-reveal>
+              <span className="hero__role">{profile.title}</span>
+              <span className="hero__tag">{profile.tagline.join(" | ")}</span>
+            </p>
+            <ul className="hero__focus" data-reveal>
+              {profile.focus.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
+            <div className="hero__cta" data-reveal>
+              <a className="btn btn--primary" href={`mailto:${profile.email}`}>
+                <Icon d={ICONS.mail} /> Contactar
+              </a>
+              <button className="btn btn--ghost" onClick={() => window.print()}>
+                <Icon d={ICONS.download} /> Descargar CV
+              </button>
+              <div className="hero__social">
+                <a href={profile.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                  <Icon d={ICONS.linkedin} />
+                </a>
+                <a href={profile.links.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+                  <Icon d={ICONS.github} />
+                </a>
+                <a href={profile.links.certifications} target="_blank" rel="noreferrer" aria-label="Certificaciones">
+                  <Icon d={ICONS.award} />
+                </a>
+              </div>
+            </div>
+            <div className="print-contact">
+              {profile.location} · {profile.phone} · {profile.email} · linkedin.com/in/james-jalz · github.com/jmc-software-x
+            </div>
+          </div>
+          <a href="#perfil" className="hero__scroll" aria-label="Bajar al perfil">
+            <span />
+          </a>
+        </header>
+
+        <Section id="perfil" kicker="01" title="Perfil ejecutivo">
+          <div className="profile">
+            <div className="profile__text" data-reveal>
+              {summary.map((p, i) => (
+                <p key={i} className={i === 0 ? "lead" : undefined}>
+                  {p}
+                </p>
+              ))}
+            </div>
+            <div className="stats">
+              {highlights.map((h, i) => (
+                <div className="stat" key={h.label} data-reveal style={{ "--i": i }}>
+                  <span className="stat__value">{h.value}</span>
+                  <span className="stat__label">{h.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        <Section id="competencias" kicker="02" title="Competencias directivas & tecnológicas">
+          <div className="skills">
+            {competencies.map((c, i) => (
+              <div className="skill" key={c.area} data-reveal style={{ "--i": i % 4 }}>
+                <h3>{c.area}</h3>
+                <div className="skill__chips">
+                  {c.items.map((it) => (
+                    <span key={it} className="chip">
+                      {it}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="experiencia" kicker="03" title="Experiencia profesional">
+          <div className="timeline">
+            {experience.map((job, i) => (
+              <Job key={job.company} job={job} index={i} />
+            ))}
+          </div>
+        </Section>
+
+        <Section id="educacion" kicker="04" title="Educación & idiomas">
+          <div className="edu">
+            <div className="edu__list">
+              {education.map((e, i) => (
+                <div className="edu__item" key={e.school} data-reveal style={{ "--i": i }}>
+                  <span className="edu__status">{e.status}</span>
+                  <h3>{e.degree}</h3>
+                  <p>{e.school}</p>
+                </div>
+              ))}
+              <p className="edu__cont" data-reveal>
+                <strong>Formación continua:</strong> {continuous}
+              </p>
+            </div>
+            <div className="langs" data-reveal>
+              <h3>Idiomas</h3>
+              {languages.map((l) => (
+                <div className="lang" key={l.name}>
+                  <div className="lang__row">
+                    <span>{l.name}</span>
+                    <span className="lang__lvl">{l.level}</span>
+                  </div>
+                  <div className="lang__bar">
+                    <span style={{ width: `${l.pct}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        <Section id="contacto" kicker="05" title="Conversemos">
+          <div className="contact" data-reveal>
+            <p className="contact__lead">
+              Estrategia de negocio, datos y ejecución tecnológica en un mismo lenguaje. Si buscas liderazgo de TI para
+              transformar tu organización, hablemos.
+            </p>
+            <div className="contact__grid">
+              <a href={`mailto:${profile.email}`} className="contact__card">
+                <Icon d={ICONS.mail} />
+                <span>Email</span>
+                <strong>{profile.email}</strong>
+              </a>
+              <a href={profile.phoneHref} target="_blank" rel="noreferrer" className="contact__card">
+                <Icon d={ICONS.phone} />
+                <span>Teléfono / WhatsApp</span>
+                <strong>{profile.phone}</strong>
+              </a>
+              <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="contact__card">
+                <Icon d={ICONS.linkedin} />
+                <span>LinkedIn</span>
+                <strong>/in/james-jalz</strong>
+              </a>
+              <div className="contact__card">
+                <Icon d={ICONS.pin} />
+                <span>Ubicación</span>
+                <strong>{profile.location}</strong>
+              </div>
+            </div>
+          </div>
+        </Section>
+      </main>
+
+      <footer className="footer">
+        <span>© {new Date().getFullYear()} James Diaz Lopez</span>
+        <span>Construido con React & Three.js</span>
+      </footer>
+    </>
+  );
+}

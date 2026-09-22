@@ -1,3 +1,0 @@
-https://vincentgarreau.com/particles.js/
-https://csvjson.com/json_beautifier
-https://www.npmjs.com/package/react-tsparticles
