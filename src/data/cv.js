@@ -192,7 +192,7 @@ export const leadership = {
 };
 
 export const path = [
-  { years: "2021 – 2022", stage: "Ingeniería & mentoría", title: "Full Stack Developer", note: "Falabella · Henry", scope: "Mentoría técnica de equipos de desarrollo" },
+  { years: "2022", stage: "Ingeniería & liderazgo", title: "Full Stack Tech Lead", note: "Henry (SoyHenry)", scope: "Gestión técnica de equipos de desarrollo" },
   { years: "2022 – 2024", stage: "Tech Lead & Arquitectura", title: "Chief Software Architect", note: "Apprecio · Fintech", scope: "Liderazgo técnico y estándares de ingeniería" },
   { years: "2024 – 2025", stage: "Project Management · PMO", title: "IT Project Manager", note: "Clínica · Transformación digital", scope: "Equipos Dev, Data, QA y Cloud · reporte a Gerencia" },
   { years: "2026", stage: "Gobierno TI corporativo", title: "IT Analyst", note: "BCP · vía TCS", scope: "Cumplimiento, seguridad y releases en banca" },
@@ -234,19 +234,13 @@ export const plan90 = [
 
 export const earlyCareer = {
   title: "Base técnica en ingeniería de software",
-  period: "2021 – 2022",
+  period: "2022",
   items: [
     {
-      role: "Teaching Assistant – Full Stack",
+      role: "Tech Lead – Full Stack",
       org: "Henry (SoyHenry)",
       period: "Feb – Abr 2022",
-      text: "Coordinación y mentoría técnica de equipos de desarrollo: distribución de tareas, seguimiento de entregables y desbloqueo técnico en proyectos Full Stack de extremo a extremo (front-end, back-end con Node.js, bases de datos SQL/NoSQL, microservicios con Docker y fundamentos de Data Science), con code review y metodologías ágiles.",
-    },
-    {
-      role: "Frontend Web Developer",
-      org: "Falabella Perú (programa de prácticas)",
-      period: "Feb – Oct 2021",
-      text: "Desarrollo de interfaces web en React JS integradas con servicios back-end, en un entorno retail de gran escala.",
+      text: "Liderazgo y gestión técnica de equipos de desarrollo: distribución de tareas, seguimiento de entregables y desbloqueo técnico en proyectos Full Stack de extremo a extremo (front-end, back-end con Node.js, bases de datos SQL/NoSQL, microservicios con Docker y fundamentos de Data Science), con code review y metodologías ágiles.",
     },
   ],
   stack: ["React", "Node.js", "REST APIs", "Microservicios", "Docker", "SQL Server", "PostgreSQL", "MongoDB", "Python", "Data Science"],

@@ -1374,7 +1374,7 @@ a.contact__card:hover {
 .early__grid {
   margin-top: 12px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 .early__item strong {
