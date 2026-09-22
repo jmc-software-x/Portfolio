@@ -209,7 +209,7 @@ export default function App() {
               </div>
             </div>
             <div className="print-contact">
-              {profile.location} · {profile.phone} · {profile.email} · linkedin.com/in/james-jalz · github.com/jmc-software-x
+              {profile.location} · {profile.phone} · {profile.email} · linkedin.com/in/jmc-business · github.com/jmc-software-x
             </div>
           </div>
           <a href="#perfil" className="hero__scroll" aria-label="Bajar al perfil">
@@ -332,7 +332,7 @@ export default function App() {
               <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="contact__card">
                 <Icon d={ICONS.linkedin} />
                 <span>LinkedIn</span>
-                <strong>/in/james-jalz</strong>
+                <strong>/in/jmc-business</strong>
               </a>
               <div className="contact__card">
                 <Icon d={ICONS.pin} />

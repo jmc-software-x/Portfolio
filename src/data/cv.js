@@ -16,9 +16,9 @@ export const profile = {
   phoneHref: "https://wa.me/51900284446",
   email: "j4mes.mclaren@icloud.com",
   links: {
-    linkedin: "https://www.linkedin.com/in/james-jalz/",
+    linkedin: "https://www.linkedin.com/in/jmc-business/",
     github: "https://github.com/jmc-software-x",
-    certifications: "https://www.linkedin.com/in/james-jalz/details/certifications/",
+    certifications: "https://www.linkedin.com/in/jmc-business/details/certifications/",
   },
 };
 
