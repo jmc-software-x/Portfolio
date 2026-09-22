@@ -74,8 +74,8 @@ export const competencies = [
 
 export const experience = [
   {
-    company: "Credicorp / BCP Perú",
-    sector: "Sector bancario",
+    company: "Tata Consultancy Services (TCS)",
+    sector: "Cliente: BCP (Credicorp)",
     role: "TI Analyst",
     period: "Mar 2026 – Actualidad",
     place: "Perú",
@@ -101,7 +101,7 @@ export const experience = [
     sector: "Clínica dermatológica · Sector salud",
     role: "Information Technology Project Manager",
     subrole: "Digital Transformation & Data Strategy",
-    period: "Oct 2024 – Dic 2025",
+    period: "Oct 2024 – Nov 2025",
     place: "Perú",
     intro:
       "Responsable de dirigir la evolución del ecosistema tecnológico de la clínica, conectando Gerencia, operación, ventas, marketing, datos y tecnología.",
@@ -127,11 +127,11 @@ export const experience = [
     tags: ["ERP", "CRM", "Sales", "Financial Control", "Logistics", "HR", "Healthcare Operations", "WhatsApp", "Leads", "Marketing", "Data Science", "BI", "Analytics", "Cloud"],
   },
   {
-    company: "Apprecio",
+    company: "Apprecio (DCanje Perú S.A.C.)",
     sector: "Fintech & criptomonedas",
     role: "Chief Software Architect",
-    period: "Ago 2021 – Jul 2024",
-    place: "Chile",
+    period: "Ago 2022 – Jul 2024",
+    place: "Perú · Chile",
     bullets: [
       "Definición de arquitectura tecnológica para plataformas financieras y productos digitales.",
       "Diseño de soluciones mediante Clean Architecture, SOLID y servicios desacoplados.",
@@ -150,10 +150,10 @@ export const experience = [
     tags: ["Angular", "React", "NestJS", "Node.js", ".NET", "Azure", "SQL", "MongoDB", "Docker", "APIs", "CI/CD"],
   },
   {
-    company: "SoyHenry",
-    role: "System Engineer Tech Lead / Project Manager",
-    period: "2017 – 2018",
-    place: "Argentina",
+    company: "Henry (SoyHenry)",
+    role: "Teaching Assistant – Full Stack Developer",
+    period: "Feb 2022 – Abr 2022",
+    place: "Remoto",
     bullets: [
       "Liderazgo y coordinación de equipos técnicos de desarrollo.",
       "Distribución y seguimiento de actividades, prioridades y entregables.",
@@ -165,6 +165,18 @@ export const experience = [
     ],
     tagLabel: "Entorno",
     tags: ["Node.js", "JavaScript", "REST APIs", "Docker", "Git", "Full Stack", "Agile"],
+  },
+  {
+    company: "Falabella Perú",
+    sector: "Retail",
+    role: "Frontend Web Developer (Prácticas)",
+    period: "Feb 2021 – Oct 2021",
+    place: "Perú",
+    bullets: [
+      "Desarrollo de interfaces web con React JS.",
+    ],
+    tagLabel: "Entorno",
+    tags: ["React JS", "JavaScript"],
   },
 ];
 

@@ -1643,4 +1643,10 @@ a.contact__card:hover {
     background: var(--teal);
     top: 0.62em;
   }
+  .job:nth-child(n + 4) .job__tags {
+    display: none;
+  }
+  .hero {
+    padding-bottom: 4pt;
+  }
 }
