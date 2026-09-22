@@ -1285,6 +1285,67 @@ a.contact__card:hover {
   }
 }
 
+
+/* job header weight */
+.job__top > div:first-child {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+.job__company {
+  font-size: 24px;
+}
+.job__sector {
+  display: block;
+  margin-top: 2px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.job__role {
+  font-size: 17px;
+}
+.job__impact {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.job__impact li {
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e9fffb;
+  background: linear-gradient(100deg, rgba(45, 212, 191, 0.18), rgba(56, 189, 248, 0.1));
+  border: 1px solid rgba(45, 212, 191, 0.35);
+}
+.job__impact li:first-child {
+  color: #fff7e0;
+  background: linear-gradient(100deg, rgba(251, 191, 36, 0.22), rgba(251, 191, 36, 0.06));
+  border-color: rgba(251, 191, 36, 0.45);
+}
+@media (max-width: 560px) {
+  .job__company {
+    font-size: 20px;
+  }
+}
+@media print {
+  .job__impact {
+    display: none;
+  }
+  .job__sector {
+    display: inline;
+    font-size: 8.5pt;
+  }
+  .job__company {
+    font-size: 10.5pt;
+  }
+  .job__role {
+    font-size: 9.5pt;
+  }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 1000px) {
   .skills {

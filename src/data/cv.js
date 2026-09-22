@@ -74,9 +74,10 @@ export const competencies = [
 
 export const experience = [
   {
-    company: "Tata Consultancy Services (TCS)",
-    sector: "Cliente: BCP (Credicorp)",
+    company: "BCP · Credicorp",
+    sector: "Consultor vía Tata Consultancy Services (TCS) · Sector bancario",
     role: "IT Analyst",
+    impact: ["Banca de alta criticidad", "APIs & microservicios", "Gobierno TI y releases DEV/QA/PROD"],
     period: "Mar 2026 – Actualidad",
     place: "Perú",
     bullets: [
@@ -97,8 +98,9 @@ export const experience = [
     tags: ["APIs", "Microservices", "Java", "REST", "OAuth2/JWT", "Git", "CI/CD", "Azure DevOps", "QA", "Security"],
   },
   {
-    company: "DepilZONE",
-    sector: "Clínica dermatológica · Sector salud",
+    company: "Clínica dermatológica privada",
+    sector: "Sector salud · Lima",
+    impact: ["≈2× ganancias del negocio", "ERP + CRM + Ventas integrados", "Estrategia data-driven"],
     role: "Information Technology Project Manager",
     subrole: "Digital Transformation & Data Strategy",
     period: "Oct 2024 – Nov 2025",
@@ -129,7 +131,9 @@ export const experience = [
   {
     company: "Apprecio (DCanje Perú S.A.C.)",
     sector: "Fintech & criptomonedas",
-    role: "Tech Lead & Software Architect",
+    role: "Chief Software Architect",
+    subrole: "Tech Lead",
+    impact: ["Arquitectura de plataformas financieras", "CI/CD multiambiente", "Seguridad OAuth2 · JWT · RBAC"],
     period: "Ago 2022 – Jul 2024",
     place: "Perú · Chile",
     bullets: [
@@ -152,6 +156,7 @@ export const experience = [
   {
     company: "Henry (SoyHenry)",
     role: "Teaching Assistant – Full Stack Developer",
+    impact: ["Acompañamiento técnico de equipos", "Code review", "Agile"],
     period: "Feb 2022 – Abr 2022",
     place: "Remoto",
     bullets: [
@@ -218,9 +223,9 @@ export const leadership = {
 
 export const path = [
   { years: "2021 – 2022", stage: "Desarrollo", title: "Frontend / Full Stack", note: "Falabella · Henry" },
-  { years: "2022 – 2024", stage: "Liderazgo técnico", title: "Tech Lead & Software Architect", note: "Apprecio · Fintech" },
+  { years: "2022 – 2024", stage: "Liderazgo técnico", title: "Chief Software Architect", note: "Apprecio · Fintech" },
   { years: "2024 – 2025", stage: "Gestión en salud", title: "IT Project Manager", note: "Clínica · Transformación digital" },
-  { years: "2026", stage: "Gobierno TI corporativo", title: "IT Analyst", note: "TCS · BCP" },
+  { years: "2026", stage: "Gobierno TI corporativo", title: "IT Analyst", note: "BCP · vía TCS" },
   { years: "Siguiente paso", stage: "Dirección", title: "Director de TI", note: "Sector salud", target: true },
 ];
 

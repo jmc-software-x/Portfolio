@@ -244,6 +244,13 @@ function Job({ job, index }) {
           {job.role}
           {job.subrole && <span> | {job.subrole}</span>}
         </p>
+        {job.impact && (
+          <ul className="job__impact">
+            {job.impact.map((m) => (
+              <li key={m}>{m}</li>
+            ))}
+          </ul>
+        )}
         {job.intro && <p className="job__intro">{job.intro}</p>}
         <ul className="job__bullets">
           {job.bullets.map((b, i) => (
