@@ -223,9 +223,9 @@ function Job({ job, index }) {
   const PREVIEW = 5;
   const hidden = job.bullets.length - PREVIEW;
   return (
-    <article className={`job ${open ? "job--open" : ""}`} data-reveal style={{ "--i": index }}>
+    <article className="job" data-reveal style={{ "--i": index }}>
       <div className="job__dot" aria-hidden="true" />
-      <div className="job__card spot">
+      <div className={`job__card spot${open ? " job--open" : ""}`}>
         <div className="job__top">
           <div>
             <h3 className="job__company">{job.company}</h3>
