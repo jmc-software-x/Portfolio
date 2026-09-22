@@ -100,7 +100,7 @@ export const experience = [
   {
     company: "Clínica dermatológica privada",
     sector: "Sector salud · Lima",
-    impact: ["≈2× ganancias del negocio", "ERP + CRM + Ventas integrados", "Estrategia data-driven"],
+    impact: ["≈2× ganancias del negocio", "Gestión de equipos Dev · Data · QA · Cloud", "Backlog, roadmap y portafolio TI", "ERP + CRM + Ventas integrados"],
     role: "Information Technology Project Manager",
     subrole: "Digital Transformation & Data Strategy",
     period: "Oct 2024 – Nov 2025",
@@ -133,7 +133,7 @@ export const experience = [
     sector: "Fintech & criptomonedas",
     role: "Chief Software Architect",
     subrole: "Tech Lead",
-    impact: ["Arquitectura de plataformas financieras", "CI/CD multiambiente", "Seguridad OAuth2 · JWT · RBAC"],
+    impact: ["Liderazgo técnico de equipos", "Arquitectura de plataformas financieras", "CI/CD multiambiente", "Seguridad OAuth2 · JWT · RBAC"],
     period: "Ago 2022 – Jul 2024",
     place: "Perú · Chile",
     bullets: [
@@ -192,11 +192,11 @@ export const leadership = {
 };
 
 export const path = [
-  { years: "2021 – 2022", stage: "Desarrollo", title: "Frontend / Full Stack", note: "Falabella · Henry" },
-  { years: "2022 – 2024", stage: "Liderazgo técnico", title: "Chief Software Architect", note: "Apprecio · Fintech" },
-  { years: "2024 – 2025", stage: "Gestión en salud", title: "IT Project Manager", note: "Clínica · Transformación digital" },
-  { years: "2026", stage: "Gobierno TI corporativo", title: "IT Analyst", note: "BCP · vía TCS" },
-  { years: "Siguiente paso", stage: "Dirección", title: "Director de TI", note: "Sector salud", target: true },
+  { years: "2021 – 2022", stage: "Ingeniería & mentoría", title: "Full Stack Developer", note: "Falabella · Henry", scope: "Mentoría técnica de equipos de desarrollo" },
+  { years: "2022 – 2024", stage: "Tech Lead & Arquitectura", title: "Chief Software Architect", note: "Apprecio · Fintech", scope: "Liderazgo técnico y estándares de ingeniería" },
+  { years: "2024 – 2025", stage: "Project Management · PMO", title: "IT Project Manager", note: "Clínica · Transformación digital", scope: "Equipos Dev, Data, QA y Cloud · reporte a Gerencia" },
+  { years: "2026", stage: "Gobierno TI corporativo", title: "IT Analyst", note: "BCP · vía TCS", scope: "Cumplimiento, seguridad y releases en banca" },
+  { years: "Siguiente paso", stage: "Dirección", title: "Director de TI", note: "Sector salud", scope: "Estrategia, gobierno y portafolio TI", target: true },
 ];
 
 export const healthFocus = [
@@ -240,7 +240,7 @@ export const earlyCareer = {
       role: "Teaching Assistant – Full Stack",
       org: "Henry (SoyHenry)",
       period: "Feb – Abr 2022",
-      text: "Mentoría técnica de equipos en proyectos Full Stack de extremo a extremo: front-end, back-end con Node.js, bases de datos SQL/NoSQL, microservicios con Docker y fundamentos de Data Science; code review, buenas prácticas y trabajo ágil.",
+      text: "Coordinación y mentoría técnica de equipos de desarrollo: distribución de tareas, seguimiento de entregables y desbloqueo técnico en proyectos Full Stack de extremo a extremo (front-end, back-end con Node.js, bases de datos SQL/NoSQL, microservicios con Docker y fundamentos de Data Science), con code review y metodologías ágiles.",
     },
     {
       role: "Frontend Web Developer",

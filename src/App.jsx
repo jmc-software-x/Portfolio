@@ -413,6 +413,7 @@ export default function App() {
                 <span className="path__stage">{p.stage}</span>
                 <strong className="path__title">{p.title}</strong>
                 <span className="path__note">{p.note}</span>
+                <span className="path__scope">{p.scope}</span>
               </li>
             ))}
           </ol>
