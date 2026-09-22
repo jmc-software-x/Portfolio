@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NetworkScene from "./components/NetworkScene";
 import {
   profile,
@@ -76,6 +76,138 @@ function useActiveSection() {
   return active;
 }
 
+
+function useSpotlight() {
+  useEffect(() => {
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    if (!fine) return undefined;
+    const onMove = (e) => {
+      const el = e.target.closest && e.target.closest(".spot");
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      el.style.setProperty("--mx", `${x * 100}%`);
+      el.style.setProperty("--my", `${y * 100}%`);
+      if (el.classList.contains("tilt")) {
+        el.style.setProperty("--rx", `${(0.5 - y) * 6}deg`);
+        el.style.setProperty("--ry", `${(x - 0.5) * 8}deg`);
+      }
+    };
+    const onOut = (e) => {
+      const el = e.target.closest && e.target.closest(".tilt");
+      if (el && !el.contains(e.relatedTarget)) {
+        el.style.setProperty("--rx", "0deg");
+        el.style.setProperty("--ry", "0deg");
+      }
+    };
+    document.addEventListener("pointermove", onMove, { passive: true });
+    document.addEventListener("pointerout", onOut, { passive: true });
+    return () => {
+      document.removeEventListener("pointermove", onMove);
+      document.removeEventListener("pointerout", onOut);
+    };
+  }, []);
+}
+
+function useScrollProgress() {
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    const on = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setP(max > 0 ? window.scrollY / max : 0);
+    };
+    on();
+    window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, []);
+  return p;
+}
+
+function Rotator({ words, interval = 2200 }) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    const id = setInterval(() => setI((n) => (n + 1) % words.length), interval);
+    return () => clearInterval(id);
+  }, [words.length, interval]);
+  return (
+    <span className="rotator" aria-live="polite">
+      <span key={i} className="rotator__word">
+        {words[i]}
+      </span>
+    </span>
+  );
+}
+
+function Counter({ value }) {
+  const ref = useRef(null);
+  const match = /^(\D*)(\d+)(.*)$/.exec(value);
+  const [shown, setShown] = useState(match ? `${match[1]}0${match[3]}` : value);
+  useEffect(() => {
+    if (!match) return undefined;
+    const el = ref.current;
+    const target = parseInt(match[2], 10);
+    let raf = 0;
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      const start = performance.now();
+      const dur = 1400;
+      const tick = (now) => {
+        const k = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - k, 3);
+        setShown(`${match[1]}${Math.round(target * eased)}${match[3]}`);
+        if (k < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    });
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+  return (
+    <span ref={ref} className="stat__value">
+      {shown}
+    </span>
+  );
+}
+
+const Ecg = () => (
+  <svg className="ecg" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="ecgGrad" x1="0" x2="1">
+        <stop offset="0" stopColor="#2dd4bf" stopOpacity="0" />
+        <stop offset="0.35" stopColor="#2dd4bf" />
+        <stop offset="0.7" stopColor="#38bdf8" />
+        <stop offset="1" stopColor="#38bdf8" stopOpacity="0" />
+      </linearGradient>
+    </defs>
+    <path className="ecg__base" d="M0 70 H250 l18 -8 l14 8 H330 l10 18 l16 -78 l16 92 l12 -24 H470 l22 -14 l22 14 H700 l18 -8 l14 8 H780 l10 18 l16 -78 l16 92 l12 -24 H920 l22 -14 l22 14 H1200" />
+    <path
+      className="ecg__line"
+      pathLength="1000"
+      d="M0 70 H250 l18 -8 l14 8 H330 l10 18 l16 -78 l16 92 l12 -24 H470 l22 -14 l22 14 H700 l18 -8 l14 8 H780 l10 18 l16 -78 l16 92 l12 -24 H920 l22 -14 l22 14 H1200"
+    />
+  </svg>
+);
+
+function Marquee({ items }) {
+  const row = items.concat(items);
+  return (
+    <div className="marquee" aria-hidden="true">
+      <div className="marquee__track">
+        {row.map((t, i) => (
+          <span key={i}>{t}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const Section = ({ id, kicker, title, children }) => (
   <section id={id} className="section">
     <header className="section__head" data-reveal>
@@ -93,7 +225,7 @@ function Job({ job, index }) {
   return (
     <article className={`job ${open ? "job--open" : ""}`} data-reveal style={{ "--i": index }}>
       <div className="job__dot" aria-hidden="true" />
-      <div className="job__card">
+      <div className="job__card spot">
         <div className="job__top">
           <div>
             <h3 className="job__company">{job.company}</h3>
@@ -142,6 +274,8 @@ function Job({ job, index }) {
 
 export default function App() {
   useReveal();
+  useSpotlight();
+  const progress = useScrollProgress();
   const active = useActiveSection();
   const [menu, setMenu] = useState(false);
 
@@ -149,6 +283,7 @@ export default function App() {
     <>
       <NetworkScene />
       <div className="vignette" aria-hidden="true" />
+      <div className="progress" style={{ transform: `scaleX(${progress})` }} aria-hidden="true" />
 
       <nav className={`nav ${menu ? "nav--open" : ""}`}>
         <a href="#top" className="nav__brand" onClick={() => setMenu(false)}>
@@ -175,7 +310,7 @@ export default function App() {
         <header className="hero">
           <div className="hero__inner">
             <p className="hero__eyebrow" data-reveal>
-              <span className="pulse-dot" /> {profile.location} · Salud · Banca · Fintech
+              <span className="pulse-dot" /> {profile.location} · <Rotator words={profile.focus} />
             </p>
             <h1 className="hero__name" data-reveal>
               James <span>Diaz Lopez</span>
@@ -212,6 +347,7 @@ export default function App() {
               {profile.location} · {profile.phone} · {profile.email} · linkedin.com/in/jmc-business · github.com/jmc-software-x
             </div>
           </div>
+          <Ecg />
           <a href="#perfil" className="hero__scroll" aria-label="Bajar al perfil">
             <span />
           </a>
@@ -228,8 +364,8 @@ export default function App() {
             </div>
             <div className="stats">
               {highlights.map((h, i) => (
-                <div className="stat" key={h.label} data-reveal style={{ "--i": i }}>
-                  <span className="stat__value">{h.value}</span>
+                <div className="stat spot tilt" key={h.label} data-reveal style={{ "--i": i }}>
+                  <Counter value={h.value} />
                   <span className="stat__label">{h.label}</span>
                 </div>
               ))}
@@ -238,7 +374,7 @@ export default function App() {
         </Section>
 
         <Section id="desempeno" kicker="02" title="Resumen de desempeño en Dirección de TI">
-          <div className="lead-sum" data-reveal>
+          <div className="lead-sum spot" data-reveal>
             <p className="lead-sum__intro">{leadership.intro}</p>
             <ul className="lead-sum__list">
               {leadership.bullets.map((b) => (
@@ -256,10 +392,12 @@ export default function App() {
           </div>
         </Section>
 
+        <Marquee items={competencies.flatMap((c) => c.items).slice(0, 40)} />
+
         <Section id="competencias" kicker="03" title="Competencias directivas & tecnológicas">
           <div className="skills">
             {competencies.map((c, i) => (
-              <div className="skill" key={c.area} data-reveal style={{ "--i": i % 4 }}>
+              <div className="skill spot tilt" key={c.area} data-reveal style={{ "--i": i % 4 }}>
                 <h3>{c.area}</h3>
                 <div className="skill__chips">
                   {c.items.map((it) => (
@@ -285,7 +423,7 @@ export default function App() {
           <div className="edu">
             <div className="edu__list">
               {education.map((e, i) => (
-                <div className="edu__item" key={e.school} data-reveal style={{ "--i": i }}>
+                <div className="edu__item spot" key={e.school} data-reveal style={{ "--i": i }}>
                   <span className="edu__status">{e.status}</span>
                   <h3>{e.degree}</h3>
                   <p>{e.school}</p>
@@ -319,22 +457,22 @@ export default function App() {
               transformar tu organización, hablemos.
             </p>
             <div className="contact__grid">
-              <a href={`mailto:${profile.email}`} className="contact__card">
+              <a href={`mailto:${profile.email}`} className="contact__card spot">
                 <Icon d={ICONS.mail} />
                 <span>Email</span>
                 <strong>{profile.email}</strong>
               </a>
-              <a href={profile.phoneHref} target="_blank" rel="noreferrer" className="contact__card">
+              <a href={profile.phoneHref} target="_blank" rel="noreferrer" className="contact__card spot">
                 <Icon d={ICONS.phone} />
                 <span>Teléfono / WhatsApp</span>
                 <strong>{profile.phone}</strong>
               </a>
-              <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="contact__card">
+              <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="contact__card spot">
                 <Icon d={ICONS.linkedin} />
                 <span>LinkedIn</span>
                 <strong>/in/jmc-business</strong>
               </a>
-              <div className="contact__card">
+              <div className="contact__card spot">
                 <Icon d={ICONS.pin} />
                 <span>Ubicación</span>
                 <strong>{profile.location}</strong>
