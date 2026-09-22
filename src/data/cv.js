@@ -153,36 +153,6 @@ export const experience = [
     tagLabel: "Entorno",
     tags: ["Angular", "React", "NestJS", "Node.js", ".NET", "Azure", "SQL", "MongoDB", "Docker", "APIs", "CI/CD"],
   },
-  {
-    company: "Henry (SoyHenry)",
-    role: "Teaching Assistant – Full Stack Developer",
-    impact: ["Acompañamiento técnico de equipos", "Code review", "Agile"],
-    period: "Feb 2022 – Abr 2022",
-    place: "Remoto",
-    bullets: [
-      "Liderazgo y coordinación de equipos técnicos de desarrollo.",
-      "Distribución y seguimiento de actividades, prioridades y entregables.",
-      "Participación en planificación, estimación y definición técnica.",
-      "Desarrollo y arquitectura de soluciones Full Stack.",
-      "Code Review y definición de buenas prácticas de ingeniería.",
-      "Seguimiento de bloqueos y acompañamiento técnico a desarrolladores.",
-      "Coordinación de proyectos bajo metodologías ágiles.",
-    ],
-    tagLabel: "Entorno",
-    tags: ["Node.js", "JavaScript", "REST APIs", "Docker", "Git", "Full Stack", "Agile"],
-  },
-  {
-    company: "Falabella Perú",
-    sector: "Retail",
-    role: "Frontend Web Developer (Prácticas)",
-    period: "Feb 2021 – Oct 2021",
-    place: "Perú",
-    bullets: [
-      "Desarrollo de interfaces web con React JS.",
-    ],
-    tagLabel: "Entorno",
-    tags: ["React JS", "JavaScript"],
-  },
 ];
 
 export const education = [
@@ -261,3 +231,22 @@ export const plan90 = [
   { range: "Días 31–60", title: "Priorización", text: "Roadmap TI alineado a Gerencia, presupuesto, gobierno de proyectos y plan de seguridad." },
   { range: "Días 61–90", title: "Ejecución", text: "Primeras mejoras en marcha, indicadores de servicio TI y reporte de avance a la Dirección." },
 ];
+
+export const earlyCareer = {
+  title: "Inicios en desarrollo de software",
+  period: "2021 – 2022",
+  items: [
+    {
+      role: "Teaching Assistant – Full Stack",
+      org: "Henry (SoyHenry)",
+      period: "Feb – Abr 2022",
+      text: "Mentoría técnica de equipos de desarrollo en proyectos Full Stack: seguimiento de entregables, code review, buenas prácticas y trabajo ágil.",
+    },
+    {
+      role: "Frontend Web Developer",
+      org: "Falabella Perú (programa de prácticas)",
+      period: "Feb – Oct 2021",
+      text: "Desarrollo de interfaces web en React JS para un entorno retail de gran escala.",
+    },
+  ],
+};

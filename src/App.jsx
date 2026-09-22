@@ -13,6 +13,7 @@ import {
   path,
   healthFocus,
   plan90,
+  earlyCareer,
 } from "./data/cv";
 
 const NAV = [
@@ -463,6 +464,26 @@ export default function App() {
             {experience.map((job, i) => (
               <Job key={job.company} job={job} index={i} />
             ))}
+            <article className="job job--early" data-reveal>
+              <div className="job__dot" aria-hidden="true" />
+              <div className="early">
+                <div className="early__head">
+                  <h3>{earlyCareer.title}</h3>
+                  <span>{earlyCareer.period}</span>
+                </div>
+                <div className="early__grid">
+                  {earlyCareer.items.map((e) => (
+                    <div className="early__item" key={e.org}>
+                      <strong>{e.role}</strong>
+                      <span className="early__org">
+                        {e.org} · {e.period}
+                      </span>
+                      <p>{e.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </article>
           </div>
         </Section>
 
