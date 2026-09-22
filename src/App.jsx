@@ -9,10 +9,12 @@ import {
   education,
   continuous,
   languages,
+  leadership,
 } from "./data/cv";
 
 const NAV = [
   ["perfil", "Perfil"],
+  ["desempeno", "Desempeño"],
   ["competencias", "Competencias"],
   ["experiencia", "Experiencia"],
   ["educacion", "Educación"],
@@ -235,7 +237,26 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="competencias" kicker="02" title="Competencias directivas & tecnológicas">
+        <Section id="desempeno" kicker="02" title="Resumen de desempeño en Dirección de TI">
+          <div className="lead-sum" data-reveal>
+            <p className="lead-sum__intro">{leadership.intro}</p>
+            <ul className="lead-sum__list">
+              {leadership.bullets.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+            <div className="job__tags">
+              <span className="job__taglabel">Alcance:</span>
+              {leadership.tags.map((t) => (
+                <span key={t} className="chip chip--sm">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        <Section id="competencias" kicker="03" title="Competencias directivas & tecnológicas">
           <div className="skills">
             {competencies.map((c, i) => (
               <div className="skill" key={c.area} data-reveal style={{ "--i": i % 4 }}>
@@ -252,7 +273,7 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="experiencia" kicker="03" title="Experiencia profesional">
+        <Section id="experiencia" kicker="04" title="Experiencia profesional">
           <div className="timeline">
             {experience.map((job, i) => (
               <Job key={job.company} job={job} index={i} />
@@ -260,7 +281,7 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="educacion" kicker="04" title="Educación & idiomas">
+        <Section id="educacion" kicker="05" title="Educación & idiomas">
           <div className="edu">
             <div className="edu__list">
               {education.map((e, i) => (
@@ -291,7 +312,7 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="contacto" kicker="05" title="Conversemos">
+        <Section id="contacto" kicker="06" title="Conversemos">
           <div className="contact" data-reveal>
             <p className="contact__lead">
               Estrategia de negocio, datos y ejecución tecnológica en un mismo lenguaje. Si buscas liderazgo de TI para

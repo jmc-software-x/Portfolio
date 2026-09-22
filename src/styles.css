@@ -802,6 +802,53 @@ a.contact__card:hover {
   font-size: 13px;
 }
 
+
+/* leadership summary */
+.lead-sum {
+  padding: 30px 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.lead-sum__intro {
+  margin: 0 0 18px;
+  font-size: 18px;
+}
+.lead-sum__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 28px;
+}
+.lead-sum__list li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.lead-sum__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  border: 2px solid var(--teal);
+}
+@media (max-width: 760px) {
+  .lead-sum__list {
+    grid-template-columns: 1fr;
+  }
+  .lead-sum {
+    padding: 22px 20px;
+  }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 1000px) {
   .skills {
@@ -1323,5 +1370,37 @@ a.contact__card:hover {
   .profile__text p,
   .profile__text .lead {
     font-size: 8.2pt;
+  }
+  .lead-sum {
+    background: none;
+    border: 0;
+    padding: 0;
+    backdrop-filter: none;
+  }
+  .lead-sum__intro {
+    font-size: 8.4pt;
+    margin: 0 0 2pt;
+    font-style: italic;
+  }
+  .lead-sum__list {
+    display: block;
+    columns: 2;
+    column-gap: 14pt;
+  }
+  .lead-sum__list li {
+    font-size: 8.2pt;
+    line-height: 1.22;
+    color: var(--text);
+    padding-left: 10pt;
+    margin-bottom: 1pt;
+    break-inside: avoid;
+  }
+  .lead-sum__list li::before {
+    width: 4pt;
+    height: 2px;
+    border: 0;
+    border-radius: 0;
+    background: var(--teal);
+    top: 0.62em;
   }
 }

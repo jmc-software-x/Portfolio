@@ -74,31 +74,6 @@ export const competencies = [
 
 export const experience = [
   {
-    company: "JMC Corporation",
-    role: "Director of Information Technology",
-    period: "2026 – Actualidad",
-    place: "Perú",
-    intro:
-      "Responsable de articular la estrategia empresarial con la ejecución tecnológica, coordinando iniciativas, proyectos y equipos especializados.",
-    bullets: [
-      "Coordinación con Gerencia para identificar objetivos, necesidades operativas y oportunidades de transformación digital.",
-      "Traducción de requerimientos de negocio en iniciativas, proyectos, arquitecturas y roadmaps tecnológicos.",
-      "Coordinación transversal con Project Managers y líderes de Arquitectura, Desarrollo, QA, Data, Bases de Datos, Cloud/Infraestructura y Seguridad.",
-      "Supervisión del ciclo de vida de iniciativas desde levantamiento y análisis hasta arquitectura, desarrollo, pruebas, despliegue y operación.",
-      "Priorización de proyectos según valor de negocio, impacto, esfuerzo, riesgo y dependencias.",
-      "Definición y evolución del Technology Roadmap.",
-      "Seguimiento de alcance, riesgos, calidad, dependencias, entregables e hitos.",
-      "Participación en decisiones de arquitectura, selección tecnológica y estrategias Build vs. Buy.",
-      "Establecimiento de lineamientos de arquitectura, seguridad, calidad, DevOps y gobierno de software.",
-      "Supervisión de estrategias de Cloud, CI/CD, observabilidad, disponibilidad y continuidad operativa.",
-      "Evaluación técnica de proveedores, plataformas y soluciones tecnológicas.",
-      "Presentación a Gerencia del avance, riesgos y oportunidades de las iniciativas tecnológicas.",
-      "Impulso del uso de Data Science, Business Intelligence e Inteligencia Artificial para apoyar decisiones y optimizar procesos.",
-    ],
-    tagLabel: "Alcance",
-    tags: ["IT Strategy", "Governance", "PMO", "Architecture", "Development", "QA", "Data", "Cloud", "DevOps", "Cybersecurity"],
-  },
-  {
     company: "Credicorp / BCP Perú",
     sector: "Sector bancario",
     role: "TI Analyst",
@@ -207,3 +182,24 @@ export const languages = [
   { name: "Inglés", level: "B1 – Intermedio", pct: 55 },
   { name: "Portugués", level: "A1 – Básico", pct: 20 },
 ];
+
+export const leadership = {
+  intro:
+    "Articulación de la estrategia empresarial con la ejecución tecnológica, coordinando iniciativas, proyectos y equipos especializados de extremo a extremo.",
+  bullets: [
+    "Coordinación con Gerencia para identificar objetivos, necesidades operativas y oportunidades de transformación digital.",
+    "Traducción de requerimientos de negocio en iniciativas, proyectos, arquitecturas y roadmaps tecnológicos.",
+    "Coordinación transversal con Project Managers y líderes de Arquitectura, Desarrollo, QA, Data, Bases de Datos, Cloud/Infraestructura y Seguridad.",
+    "Supervisión del ciclo de vida de iniciativas desde levantamiento y análisis hasta arquitectura, desarrollo, pruebas, despliegue y operación.",
+    "Priorización de proyectos según valor de negocio, impacto, esfuerzo, riesgo y dependencias.",
+    "Definición y evolución del Technology Roadmap.",
+    "Seguimiento de alcance, riesgos, calidad, dependencias, entregables e hitos.",
+    "Participación en decisiones de arquitectura, selección tecnológica y estrategias Build vs. Buy.",
+    "Establecimiento de lineamientos de arquitectura, seguridad, calidad, DevOps y gobierno de software.",
+    "Supervisión de estrategias de Cloud, CI/CD, observabilidad, disponibilidad y continuidad operativa.",
+    "Evaluación técnica de proveedores, plataformas y soluciones tecnológicas.",
+    "Presentación a Gerencia del avance, riesgos y oportunidades de las iniciativas tecnológicas.",
+    "Impulso del uso de Data Science, Business Intelligence e Inteligencia Artificial para apoyar decisiones y optimizar procesos.",
+  ],
+  tags: ["IT Strategy", "Governance", "PMO", "Architecture", "Development", "QA", "Data", "Cloud", "DevOps", "Cybersecurity"],
+};
